@@ -2,13 +2,18 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import {createStackNavigator } from '@react-navigation/stack'
 import {createDrawerNavigator} from '@react-navigation/drawer'
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import {BottomTabBar, createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+
+
+
+
 
 
 import splash from '../reactapp/android/app/src/screens/splash'
 import signup from '../reactapp/android/app/src//screens/signup';
 import Login from './android/app/src/screens/login';
 import Home from './android/app/src/screens/home';
+import { Feather,ArrowUpCircle } from 'react-native-feather';
 
 
 
@@ -20,7 +25,7 @@ const App = ({})=>{
     return(
         <NavigationContainer>
 
-            <tab.Navigator defaultStatus={'open'} initialRouteName={'splash'}>
+            <tab.Navigator initialRouteName={'Home'} screenOptions={{headerShown:false}}>
 
                 <tab.Screen name='splash'  component={splash}>
                 </tab.Screen>

@@ -1,17 +1,74 @@
-import React from "react";
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from "react-native";
+import React, {useState} from "react";
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button } from "react-native";
 
 
 const Login = ({navigation}) => {
+    const [input,setInput] = useState([
+        {
+            id:1,
+            name:"nihal",
+            place:"kakkodi",
+            age:22
+        },
+
+        {
+            id:2,
+            name:"nehna",
+            place:"kakkodi",
+            age:25
+        },
+
+        {
+            id:3,
+            name:"hidash",
+            place:"kakkodi",
+            age:29
+        }
+    ]
+    )
+    
+
+    const name=(name)=>{
+        alert(name)
+    }
+
+    const handleDelete=(id)=>{
+
+     const filtered = input.filter((items)=>(
+        items.id !== id
+         
+     ))
+     setInput(filtered)
+    }
     return (
         <View style={Styles.container}>
             <View>
                 <Text style={Styles.head}>Login</Text>
-                <TextInput style={Styles.uname} placeholder="Username"></TextInput>
+                
+                <TextInput style={Styles.uname} placeholder="Username" name='username'></TextInput>
                 <TextInput style={Styles.pass} placeholder="Password" secureTextEntry={true}></TextInput>
                 <TouchableOpacity style={Styles.button1} onPress={()=>navigation.navigate('home')}>
+                
                     <Text style={Styles.signup}>Login</Text>
                 </TouchableOpacity>
+                {input.map((items)=>{
+                    return(
+                        
+                        <View key={items.id}>
+
+                        <TouchableOpacity>
+                            <Text onPress={()=>name(items.name)}>
+                                {items.name}
+                            </Text>
+                        </TouchableOpacity>
+                        <Text>{items.place}</Text>
+                        <Text>{items.age}</Text>
+                        <Button title="delete" onPress={()=>handleDelete(items.id)}>
+                        </Button>
+                        
+                        </View>
+                    )
+                })}
             </View>
 
         </View>
